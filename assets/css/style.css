@@ -1,24 +1,39 @@
 .play-area {
 	border: 2px solid;
 	border-radius: 1px;
-	padding: 2rem;
+	padding: 0 2rem;
 	background-image: url("../images/seamless_paper_texture.png");
+	min-height: 837px;
 }
 
 .row {
 	margin: 2rem 0;
 }
 
-.answer {
+.answer-btn, .start-btn, .continue-btn {
 	border: .25rem solid #2c62b1;
 	border-radius: 1rem; 
 	background-color: #cbe0b9;
 	padding: .5rem;
 	margin: 1rem 0;
+	width: 100%;
 }
 
-.answer:hover {
+.answer-btn {
+	font-size: 20px;
+}
+
+.start-btn, .continue-btn {
+	font-size: 32px;
+	font-weight: 500;
+}
+
+.answer-btn:hover, .start-btn:hover, .continue-btn:hover {
 	background-color: #e0b9b9;
+}
+
+.answer-img {
+	height: 240px;
 }
 
 h1 {
@@ -31,4 +46,5 @@ hr {
 
 body {
 	background-image: url("../images/swirl.jpg");
+	min-width: 480px;
 }

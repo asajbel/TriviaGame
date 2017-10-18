@@ -1,17 +1,149 @@
 // ID of the Google Spreadsheet
- var spreadsheetID = "1RznpZAVO9Kb2dYlsFCWE4gPrUJkfkKMvMqytoqHAM_s";
+var spreadsheetID = "1RznpZAVO9Kb2dYlsFCWE4gPrUJkfkKMvMqytoqHAM_s";
+var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
+var questions = [];
+var index = 0;
 
- // Make sure it is public or set to Anyone with link can view 
- var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
+var timer = {
+	time: 30,
+	running: false,
+	intervalId: 0,
 
- $.getJSON(url, function(data) {
+	reset: function(timeSet = 30, location="timer") {
+		timer.time = timeSet;
+		timer.stop();
+		$("#" + location).text(timer.time); 
+	},
 
-  var entry = data.feed.entry;
+	start: function(timeSet = 30, location = "timer") {
+		if (!timer.running) {
+			timer.time = timeSet;
+			timer.intervalId = setInterval(timer.count, 1000, location);
+			timer.running = true;
+		}
+	},
 
-  console.log(entry);
+	stop: function() {
+		clearInterval(timer.intervalId);
+		timer.running = false;
+	},
 
-  $(entry).each(function() {
-  	console.log(this.gsx$question.$t);
-  });
+	count: function(loc) {
+		timer.time--;
+		$("#" + loc).text(timer.time);
+		if (timer.time == 0) {
+			endQuestion("time");
+		}
+	}
+}
 
- });
+function endQuestion(end) {
+	console.log(end);
+	timer.stop();
+	$(".question").hide();
+	$(".answer").show();
+	switch(end) {
+		case "win":
+			$("#correct").text("Correct!");
+			$("#tell-answer").hide();
+			break;
+		case "lose":
+			$("#correct").text("Wrong!");
+			$("#tell-answer").show();
+			break;
+		case "time":
+			$("#correct").text("Time Over!");
+			$("#tell-answer").show();
+			break;
+		default:
+	}
+}
+
+function writeQuestion(q) {
+	//write question
+	$("#question").text(q.gsx$question.$t);
+	//write answer 1 - 4
+	$("#answer1").text(q.gsx$answer1.$t);
+	$("#answer2").text(q.gsx$answer2.$t);
+	$("#answer3").text(q.gsx$answer3.$t);
+	$("#answer4").text(q.gsx$answer4.$t);
+	//write correct answer
+	var correctAnswer = "";
+	switch (q.gsx$correct.$t) {
+		case "1":
+			correctAnswer = q.gsx$answer1.$t;
+			break;
+		case "2":
+			correctAnswer = q.gsx$answer2.$t;
+			break;
+		case "3":
+			correctAnswer = q.gsx$answer3.$t;
+			break;
+		case "4":
+			correctAnswer = q.gsx$answer4.$t;
+			break;
+		default:
+	}
+	$("#correct-answer").text(correctAnswer);
+	//put in image
+	var imagePath = "assets/images/";
+	$("#answer-img").attr("src", imagePath + q.gsx$image.$t);
+	//put in alt text
+	$("#answer-img").attr("alt", q.gsx$imagetext.$t);
+	//put in text
+	$("#altText").text(q.gsx$imagetext.$t);
+
+}
+
+$(document).ready(function() {
+	var correctNumber = 0;
+
+	$.getJSON(url, function(data) {
+		questions = data.feed.entry;
+		console.log(questions);
+	});
+
+	$(".question").hide();
+	$(".answer").hide();
+	$(".end").hide();
+
+
+	$("#start").on("click", function(event){
+		index = 0; 
+		correctNumber = 0;
+		writeQuestion(questions[index]);
+		$(".start").hide();
+		$(".question").show();
+		timer.start();
+	});
+
+	$("#continue").on("click", function(event){
+		$(".answer").hide();
+		index++;
+		if (index < questions.length) {
+			timer.reset();
+			timer.start();
+			$(".question").show();
+			writeQuestion(questions[index]);
+		} else {
+			$("#correctNum").text(correctNumber);
+			$("#incorrectNum").text(questions.length - correctNumber);
+			$(".end").show();
+		}
+	});
+
+	$("#restart").on("click", function(event) {
+		$(".end").hide();
+		$(".start").show();
+	})
+
+	$(".answer-btn").on("click", function(event){
+		if(questions[index].gsx$correct.$t == $(this).attr("value")) {
+			endQuestion("win");
+			correctNumber++;
+		} else {
+			endQuestion("lose");
+		}
+	});
+
+});

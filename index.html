@@ -19,31 +19,62 @@
 				</div>
 			</div>
 		
-			<div class="row">
-				<div id="timer" class="col-12">
-					<h2>The time is ticking down</h2>
+			<div class="row question answer">
+				<div id="" class="col-12">
+					<h2>The time is ticking down: <span id="timer">30</span></h2>
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row start">
+				<div class="col-12">
+					<button id="start" class="start-btn">Start</button>
+				</div>
+			</div>
+
+			<div class="row question">
 				<div id="" class="col-12">
-					<h4 id="question">What is air speed of a laden swallow?</h4>
+					<h3 id="question">What is air speed of a laden swallow?</h3>
 					<hr>
 				</div>
 			</div>
 
-			<div id="answers" class="row" align="center">
+			<div id="" class="row question" align="center">
 				<div class="col-md-6">
-					<h5 id="answer1" class= "answer">104 km/h</h5>
+					<button id="answer1" class= "answer-btn" value='1' >104 km/h</button>
 				</div>
 				<div class="col-md-6">
-					<h5 id="answer2" class= "answer">10 km/h</h5>
+					<button id="answer2" class= "answer-btn" value='2'>10 km/h</button>
 				</div>
 				<div class="col-md-6">
-					<h5 id="answer3" class= "answer">23 km/h</h5>
+					<button id="answer3" class= "answer-btn" value='3'>23 km/h</button>
 				</div>
 				<div class="col-md-6">
-					<h5 id="answer4" class= "answer">African or European?</h5>
+					<button id="answer4" class= "answer-btn" value='4'>African or European?</button>
+				</div>
+			</div>
+
+			<div id="" class="row answer" align="center">
+				<div class="col-md-12">
+					<h2 id="correct">Were you right?</h2>
+					<hr>
+					<h5 id="tell-answer">The correct answer was: <span id="correct-answer">foo</span></h5>
+					<img id="answer-img" class="answer-img" src="assets/images/hedgehog.jpg" alt="Hedgehog-inna-canoe">
+					<p id="altText">Some cool info goes here</p>
+				</div>
+			</div>
+
+			<div class="row answer">
+				<div class="col-12">
+					<button id="continue" class="continue-btn">Continue</button>
+				</div>
+			</div>
+
+			<div class="row end">
+				<div class="col-12">
+					<h2>Quiz complete!</h2>
+					<h3>Correct: <span id="correctNum">0</span></h2>
+					<h3>Incorrect: <span id="incorrectNum">Correct less # of questions</span></h2>
+					<button id="restart" class="continue-btn">Restart</button>
 				</div>
 			</div>
 
