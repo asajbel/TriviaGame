@@ -60,14 +60,13 @@ function endQuestion(end) {
 }
 
 function writeQuestion(q) {
-	//write question
 	$("#question").text(q.gsx$question.$t);
-	//write answer 1 - 4
+
 	$("#answer1").text(q.gsx$answer1.$t);
 	$("#answer2").text(q.gsx$answer2.$t);
 	$("#answer3").text(q.gsx$answer3.$t);
 	$("#answer4").text(q.gsx$answer4.$t);
-	//write correct answer
+
 	var correctAnswer = "";
 	switch (q.gsx$correct.$t) {
 		case "1":
@@ -85,12 +84,12 @@ function writeQuestion(q) {
 		default:
 	}
 	$("#correct-answer").text(correctAnswer);
-	//put in image
+	
 	var imagePath = "assets/images/";
 	$("#answer-img").attr("src", imagePath + q.gsx$image.$t);
-	//put in alt text
+	
 	$("#answer-img").attr("alt", q.gsx$imagetext.$t);
-	//put in text
+	
 	$("#altText").text(q.gsx$imagetext.$t);
 
 }
