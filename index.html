@@ -1,0 +1,92 @@
+<!--Can this comment be seen in comments pull request?-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	<title>Trivia Game</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/colors.css">
+</head>
+<body>
+	<div class="container">
+		
+		<div class="play-area mt-4 bd-gd-grey text-center">
+			
+			<div class="row">
+				<div class="col-12">
+					<h1 class="title text-gd-blue">Trivia!</h1>
+				</div>
+			</div>
+		
+			<div class="row question answer">
+				<div id="" class="col-12">
+					<h2>The time is ticking down: <span id="timer">30</span></h2>
+				</div>
+			</div>
+
+			<div class="row start">
+				<div class="col-12">
+					<button id="start" class="start-btn">Start</button>
+				</div>
+			</div>
+
+			<div class="row question">
+				<div id="" class="col-12">
+					<h3 id="question">What is air speed of a laden swallow?</h3>
+					<hr>
+				</div>
+			</div>
+
+			<div id="" class="row question" align="center">
+				<div class="col-md-6">
+					<button id="answer1" class= "answer-btn" value='1' >104 km/h</button>
+				</div>
+				<div class="col-md-6">
+					<button id="answer2" class= "answer-btn" value='2'>10 km/h</button>
+				</div>
+				<div class="col-md-6">
+					<button id="answer3" class= "answer-btn" value='3'>23 km/h</button>
+				</div>
+				<div class="col-md-6">
+					<button id="answer4" class= "answer-btn" value='4'>African or European?</button>
+				</div>
+			</div>
+
+			<div id="" class="row answer" align="center">
+				<div class="col-md-12">
+					<h2 id="correct">Were you right?</h2>
+					<hr>
+					<h5 id="tell-answer">The correct answer was: <span id="correct-answer">foo</span></h5>
+					<img id="answer-img" class="answer-img" src="assets/images/hedgehog.jpg" alt="Hedgehog-inna-canoe">
+					<p id="altText">Some cool info goes here</p>
+				</div>
+			</div>
+
+			<div class="row answer">
+				<div class="col-12">
+					<button id="continue" class="continue-btn">Continue</button>
+				</div>
+			</div>
+
+			<div class="row end">
+				<div class="col-12">
+					<h2>Quiz complete!</h2>
+					<h3>Correct: <span id="correctNum">0</span></h2>
+					<h3>Incorrect: <span id="incorrectNum">Correct less # of questions</span></h2>
+					<button id="restart" class="continue-btn">Restart</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	<script src="assets/javascript/app.js"></script>
+</body>
+</html>
