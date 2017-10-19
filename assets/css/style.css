@@ -30,6 +30,7 @@
 
 .answer-btn:hover, .start-btn:hover, .continue-btn:hover {
 	background-color: #e0b9b9;
+	cursor: pointer;
 }
 
 .answer-img {

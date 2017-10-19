@@ -96,10 +96,12 @@ function writeQuestion(q) {
 
 $(document).ready(function() {
 	var correctNumber = 0;
+	var questionsReady = false;
 
 	$.getJSON(url, function(data) {
 		questions = data.feed.entry;
 		console.log(questions);
+		questionsReady = true;
 	});
 
 	$(".question").hide();
@@ -108,15 +110,19 @@ $(document).ready(function() {
 
 
 	$("#start").on("click", function(event){
-		index = 0; 
-		correctNumber = 0;
-		writeQuestion(questions[index]);
-		$(".start").hide();
-		$(".question").show();
-		timer.start();
+		if (questionsReady) {
+			event.preventDefault();
+			index = 0; 
+			correctNumber = 0;
+			writeQuestion(questions[index]);
+			$(".start").hide();
+			$(".question").show();
+			timer.start();
+		}
 	});
 
 	$("#continue").on("click", function(event){
+		event.preventDefault();
 		$(".answer").hide();
 		index++;
 		if (index < questions.length) {
@@ -132,11 +138,13 @@ $(document).ready(function() {
 	});
 
 	$("#restart").on("click", function(event) {
+		event.preventDefault();
 		$(".end").hide();
 		$(".start").show();
 	})
 
 	$(".answer-btn").on("click", function(event){
+		event.preventDefault();
 		if(questions[index].gsx$correct.$t == $(this).attr("value")) {
 			endQuestion("win");
 			correctNumber++;
